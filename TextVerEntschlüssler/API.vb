@@ -1,4 +1,6 @@
-﻿Public Class API
+﻿Imports System.Windows.Forms
+
+Public Class API
 
     Public Shared Function GetTimesOfOccuration(ByVal array As String(), ByVal SearchString As String, ByVal IgnoreCase As Boolean) As Integer
         Dim times As Integer = 0

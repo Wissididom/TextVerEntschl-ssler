@@ -1,8 +1,13 @@
-﻿Public Class Form1
-    
+﻿Imports System.IO
+Imports System.Text
+Imports System.Windows.Forms
+
+Public Class Form1
+
     Private Sub btn_crypttypes_Click(sender As Object, e As EventArgs) Handles btn_crypttypes.Click
         Data.SetData(txt_crypttypes.Text)
-        frm_crypttypes.ShowDialog()
+        Dim frm = New FrmCrypttypes()
+        frm.ShowDialog()
         txt_crypttypes.Text = Data.GetData()
         Data.ClearData()
     End Sub
@@ -16,7 +21,7 @@
             .FileName = "nichts gewählt"
             .Filter = "Textdateien|*.txt|Alle Dateien|*.*"
             If .ShowDialog() = DialogResult.OK Then
-                rtb_decrypted.Text = My.Computer.FileSystem.ReadAllText(.FileName)
+                rtb_decrypted.Text = File.ReadAllText(.FileName, Encoding.UTF8)
             End If
         End With
     End Sub
@@ -29,7 +34,7 @@
             .FileName = "nichts gewählt"
             .Filter = "Textdateien|*.txt|Alle Dateien|*.*"
             If .ShowDialog() = DialogResult.OK Then
-                My.Computer.FileSystem.WriteAllText(.FileName, rtb_decrypted.Text, False)
+                File.WriteAllText(.FileName, rtb_decrypted.Text, Encoding.UTF8)
             End If
         End With
     End Sub
@@ -51,7 +56,7 @@
             .FileName = "nichts gewählt"
             .Filter = "Textdateien|*.txt|Alle Dateien|*.*"
             If .ShowDialog() = DialogResult.OK Then
-                rtb_encrypted.Text = My.Computer.FileSystem.ReadAllText(.FileName)
+                rtb_encrypted.Text = File.ReadAllText(.FileName, Encoding.UTF8)
             End If
         End With
     End Sub
@@ -64,7 +69,7 @@
             .FileName = "nichts gewählt"
             .Filter = "Textdateien|*.txt|Alle Dateien|*.*"
             If .ShowDialog() = DialogResult.OK Then
-                My.Computer.FileSystem.WriteAllText(.FileName, rtb_encrypted.Text, False)
+                File.WriteAllText(.FileName, rtb_encrypted.Text, Encoding.UTF8)
             End If
         End With
     End Sub
